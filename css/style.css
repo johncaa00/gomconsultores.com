@@ -21,6 +21,34 @@
     --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
+
+/* ---------------------------------------------------------------------------
+   Iconos SVG. Sustituyen a FontAwesome: el sitio usaba 17 iconos y cargaba
+   toda la libreria desde un CDN. width/height en em hace que las reglas de
+   font-size que ya existian sigan controlando el tamano, y fill:currentColor
+   hace lo propio con color.
+   --------------------------------------------------------------------------- */
+.icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    display: inline-block;
+    vertical-align: -0.125em;
+    flex-shrink: 0;
+}
+
+@keyframes icon-spin {
+    to { transform: rotate(360deg); }
+}
+
+.icon-spin {
+    animation: icon-spin 1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .icon-spin { animation: none; }
+}
+
 /* Reset Básico & Estilos Globales */
 *,
 *::before,
@@ -257,6 +285,52 @@ section.hero-section+section+section {
     margin-bottom: 0.5em;
 }
 
+/* La foto del hero tiene zonas claras (camisa blanca, cielo) donde el texto
+   se perdia pese al overlay. La sombra da contraste sin oscurecer la imagen. */
+.hero-content h1,
+.hero-content .hero-sub {
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+}
+
+.hero-content .hero-sub {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0 auto;
+    color: var(--color-text-light);
+}
+
+/* Franja de prueba social en texto, justo bajo el hero.
+   Los logos del carrusel son imagenes y Google no lee lo que dicen.
+   Estos nombres si se indexan. */
+.proof-strip {
+    background-color: var(--color-bg-light-gray);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 18px 0;
+}
+
+.proof-strip p {
+    margin: 0;
+    text-align: center;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--color-text-medium);
+}
+
+.proof-strip strong {
+    color: var(--color-text-dark);
+}
+
+@media (max-width: 600px) {
+    .hero-content .hero-sub {
+        font-size: 1rem;
+    }
+
+    .proof-strip p {
+        font-size: 0.82rem;
+    }
+}
+
 .hero-content .btn {
     margin-top: 1.5em;
     padding: 15px 35px;
@@ -309,6 +383,8 @@ section:not([style*="background-color"]) .benefit-iso-card {
     margin-bottom: 20px;
     display: block;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .benefit-icon {
@@ -317,6 +393,8 @@ section:not([style*="background-color"]) .benefit-iso-card {
     margin-bottom: 20px;
     display: block;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .feature-item h3,
@@ -648,7 +726,7 @@ section:not([style*="background-color"]) .benefit-iso-card {
     transform: scale(1.05);
 }
 
-.portfolio-img-placeholder i {
+.portfolio-img-placeholder .icon {
     font-size: 3em;
     opacity: 0.85;
 }
@@ -714,7 +792,7 @@ a.contact-card:hover {
     color: var(--color-text-dark);
 }
 
-.contact-card i {
+.contact-card .icon {
     font-size: 1.25em;
     color: var(--color-primary-gom);
     width: 26px;
@@ -865,7 +943,7 @@ a.contact-card:hover {
     color: #2e7d32;
 }
 
-.form-success i {
+.form-success .icon {
     font-size: 1.5em;
     flex-shrink: 0;
 }
@@ -875,7 +953,7 @@ a.contact-card:hover {
     color: #c62828;
 }
 
-.form-error i {
+.form-error .icon {
     font-size: 1.5em;
     flex-shrink: 0;
 }

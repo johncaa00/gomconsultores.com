@@ -20,6 +20,14 @@ if (navToggle && navLinks) {
 // Formulario de contacto — envío via fetch a Formspree (sin redirección de página)
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
+    const submitBtn = contactForm.querySelector('.form-submit');
+    const successMsg = document.getElementById('form-success');
+    const errorMsg = document.getElementById('form-error');
+    // El texto del boton vive en el HTML y solo ahi. Antes estaba duplicado
+    // aqui, asi que cambiarlo en index.html dejaba las dos versiones
+    // descuadradas en cuanto el usuario enviaba una vez.
+    const btnHTMLOriginal = submitBtn ? submitBtn.innerHTML : '';
+
     contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
@@ -32,12 +40,9 @@ if (contactForm) {
             return;
         }
 
-        const submitBtn = contactForm.querySelector('.form-submit');
-        const successMsg = document.getElementById('form-success');
-        const errorMsg = document.getElementById('form-error');
-
         submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin"></i>';
+        submitBtn.innerHTML =
+            'Enviando... <svg class="icon icon-spin" aria-hidden="true"><use href="#i-spinner"></use></svg>';
         successMsg.style.display = 'none';
         errorMsg.style.display = 'none';
 
@@ -48,17 +53,19 @@ if (contactForm) {
                 headers: { Accept: 'application/json' },
             });
 
-            if (response.ok) {
-                contactForm.reset();
-                successMsg.style.display = 'flex';
-                submitBtn.style.display = 'none';
-            } else {
+            if (!response.ok) {
                 throw new Error('Error ' + response.status);
             }
+
+            contactForm.reset();
+            successMsg.style.display = 'flex';
         } catch {
             errorMsg.style.display = 'flex';
+        } finally {
+            // El boton vuelve SIEMPRE, tambien tras un envio correcto. Antes se
+            // ocultaba y una segunda consulta obligaba a recargar la pagina.
             submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Enviar consulta &nbsp;<i class="fas fa-arrow-right"></i>';
+            submitBtn.innerHTML = btnHTMLOriginal;
         }
     });
 }
