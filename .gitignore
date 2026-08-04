@@ -1,0 +1,20 @@
+# Configuracion local de Claude Code (permisos por maquina, no compartible)
+.claude/settings.local.json
+
+# Estado del navegador headless de gstack. Contiene tokens de sesion
+# (terminal-internal-token) y logs. Nunca debe versionarse.
+.gstack/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*~
+
+# Temporales de pruebas
+_tmp-*.html

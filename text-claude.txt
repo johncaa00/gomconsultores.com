@@ -1,0 +1,12 @@
+ DONE.
+
+  El documento de diseño está en:
+  ~/.gstack/projects/GOMConsultores/johncaa-unknown-design-20260604-230908.md
+
+  La tarea de esta semana: Contacta a 3 clientes actuales y pídeles un testimonio escrito. Eso, antes de escribir una
+  sola línea de código.
+
+  Cuando estés listo para la siguiente etapa:
+  - /plan-eng-review — para planificar el desarrollo técnico del sitio
+  - /design-consultation — para definir el sistema visual (colores, tipografía, componentes)
+  - /design-review — cuando tengas algo construido y quieras un audit visual
