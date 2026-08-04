@@ -1,0 +1,59 @@
+# GOM Consultores — configuracion Apache (DreamHost)
+# Un servidor Nginx ignora este archivo sin romper nada.
+
+# ---------------------------------------------------------------------------
+# Canonicalizacion: una sola URL para Google.
+# Fuerza HTTPS y la variante con www, que es la declarada en <link rel="canonical">.
+# Sin esto, gomconsultores.com y www.gomconsultores.com son dos sitios distintos
+# para Google y se reparten la autoridad entre ambos.
+# ---------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http -> https
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://www.gomconsultores.com/$1 [R=301,L]
+
+  # sin www -> con www
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^(.*)$ https://www.gomconsultores.com/$1 [R=301,L]
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Compresion. Reduce el HTML, CSS y JS en transito.
+# Las imagenes ya estan comprimidas: recomprimirlas gasta CPU sin ganar nada.
+# ---------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Cache del navegador. Un visitante que vuelve no descarga otra vez las imagenes.
+# El HTML se deja corto para que los cambios de copia se vean el mismo dia.
+# ---------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType image/x-icon            "access plus 1 year"
+  ExpiresByType text/css                "access plus 1 month"
+  ExpiresByType application/javascript  "access plus 1 month"
+  ExpiresByType text/html               "access plus 1 hour"
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# MIME de WebP. Algunos Apache antiguos no lo declaran y sirven el archivo
+# como binario generico, con lo que el navegador no lo pinta.
+# ---------------------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# No listar el contenido de las carpetas sin index.
+# ---------------------------------------------------------------------------
+Options -Indexes

@@ -5,9 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GOM Consultores | Consultoría en Certificaciones BRCGS e ISO — Ecuador</title>
     <meta name="description" content="Consultoría especializada en certificaciones BRCGS, ISO 22000, ISO 22002, ISO 22004 e ISO 9001 en Ecuador. Decenas de empresas certificadas en Ecuador. Metodologías adaptadas a su industria." />
+    <link rel="canonical" href="https://www.gomconsultores.com/" />
+
     <meta property="og:title" content="GOM Consultores | Consultoría en Certificaciones BRCGS e ISO" />
     <meta property="og:description" content="Consultores especializados en BRCGS, ISO 22000 y familia, e ISO 9001 en Ecuador. Acompañamos a su empresa desde el diagnóstico inicial hasta la certificación." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.gomconsultores.com/" />
+    <meta property="og:site_name" content="GOM Consultores" />
+    <meta property="og:locale" content="es_EC" />
+    <!-- og:image debe ser URL absoluta: WhatsApp y LinkedIn no resuelven rutas
+         relativas. Sin esto, cada enlace compartido se ve sin preview. -->
+    <meta property="og:image" content="https://www.gomconsultores.com/img/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GOM Consultores — consultoría en certificaciones BRCGS e ISO en Ecuador" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GOM Consultores | Consultoría en Certificaciones BRCGS e ISO" />
+    <meta name="twitter:description" content="Consultores especializados en BRCGS, ISO 22000 y familia, e ISO 9001 en Ecuador." />
+    <meta name="twitter:image" content="https://www.gomconsultores.com/img/og-image.jpg" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/img/logo/logo.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,6 +45,83 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link rel="stylesheet" href="css/style.css" />
+
+    <!--
+      Datos estructurados para Google (JSON-LD).
+      El @type es un array porque GOM es las dos cosas a la vez: un servicio
+      profesional y un negocio con presencia local en Ecuador.
+
+      PENDIENTE — faltan dos campos y son los que deciden si aparece en
+      busquedas locales. Se omiten a proposito en lugar de inventarlos:
+        "addressLocality": ciudad (Guayaquil / Quito / Cuenca...)
+        "addressRegion":   provincia (Guayas / Pichincha / Azuay...)
+      Si existe perfil de Google Business, el name, telephone y address deben
+      copiarse LITERALMENTE de ahi. Si no coinciden, Google descarta la senal.
+      Y anadir los perfiles de LinkedIn/Facebook en "sameAs".
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["ProfessionalService", "LocalBusiness"],
+      "@id": "https://www.gomconsultores.com/#organizacion",
+      "name": "GOM Consultores",
+      "url": "https://www.gomconsultores.com/",
+      "logo": "https://www.gomconsultores.com/img/logo/logo.png",
+      "image": "https://www.gomconsultores.com/img/og-image.jpg",
+      "description": "Consultoría especializada en la implementación de certificaciones BRCGS, ISO 22000, ISO 22002, ISO 22004 e ISO 9001 para la industria de alimentos, empaques, farmacéutica, cosmética y química en Ecuador.",
+      "email": "contacto@gomconsultores.com",
+      "telephone": "+593997385417",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "EC"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Ecuador"
+      },
+      "knowsAbout": [
+        "BRCGS Global Standard Food Safety",
+        "ISO 22000",
+        "ISO 22002",
+        "ISO 22004",
+        "ISO 9001",
+        "HACCP",
+        "Inocuidad alimentaria",
+        "Certificación de empaques en contacto con alimentos"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de consultoría en certificación",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Implementación de sistemas de gestión de inocuidad y calidad",
+              "description": "Diagnóstico inicial, análisis de brechas frente a la norma, plan de implementación y acompañamiento hasta la auditoría de certificación."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Auditorías internas y de preparación",
+              "description": "Auditorías de proceso y simulacros previos a la auditoría del organismo certificador."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Formación y capacitación en normas de calidad e inocuidad",
+              "description": "Capacitación de equipos en BRCGS, ISO 22000 y familia, e ISO 9001."
+            }
+          }
+        ]
+      }
+    }
+    </script>
   </head>
 
   <body>
