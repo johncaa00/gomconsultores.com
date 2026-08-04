@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.gomconsultores.com/sitemap.xml
+Sitemap: https://gomconsultores.com/sitemap.xml

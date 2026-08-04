@@ -3,20 +3,21 @@
 
 # ---------------------------------------------------------------------------
 # Canonicalizacion: una sola URL para Google.
-# Fuerza HTTPS y la variante con www, que es la declarada en <link rel="canonical">.
-# Sin esto, gomconsultores.com y www.gomconsultores.com son dos sitios distintos
-# para Google y se reparten la autoridad entre ambos.
+# Fuerza HTTPS y la variante SIN www, que es la declarada en
+# <link rel="canonical"> y la que DreamHost ya usa por defecto.
+# Sin esto, gomconsultores.com y www.gomconsultores.com son dos sitios
+# distintos para Google y se reparten la autoridad entre ambos.
 # ---------------------------------------------------------------------------
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # con www -> sin www (y de paso a https, en una sola redireccion)
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
   # http -> https
   RewriteCond %{HTTPS} !=on
-  RewriteRule ^(.*)$ https://www.gomconsultores.com/$1 [R=301,L]
-
-  # sin www -> con www
-  RewriteCond %{HTTP_HOST} !^www\. [NC]
-  RewriteRule ^(.*)$ https://www.gomconsultores.com/$1 [R=301,L]
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 </IfModule>
 
 # ---------------------------------------------------------------------------
