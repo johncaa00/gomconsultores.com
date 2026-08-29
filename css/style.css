@@ -216,6 +216,10 @@ section.hero-section+section+section {
 
 .navbar .logo img {
     height: 45px;
+    /* width:auto es obligatorio: el <img> lleva width/height explicitos
+       para reservar espacio y evitar el salto de layout (CLS). Sin esto,
+       el atributo width=323 se impone y el logo sale estirado a lo ancho. */
+    width: auto;
     vertical-align: middle;
 }
 
@@ -648,9 +652,11 @@ section:not([style*="background-color"]) .benefit-iso-card {
     margin: 0 auto 3em;
 }
 
+/* 3 columnas: son 6 tarjetas, asi que caen en dos filas parejas. Con 5
+   columnas la sexta quedaba sola y descolgada al final. */
 .standards-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     text-align: left;
 }
@@ -694,12 +700,6 @@ section:not([style*="background-color"]) .benefit-iso-card {
     color: var(--color-text-medium);
     line-height: 1.6;
     margin: 0;
-}
-
-@media (max-width: 1024px) {
-    .standards-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
 }
 
 @media (max-width: 600px) {
@@ -1030,6 +1030,10 @@ a.contact-card:hover {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .navbar .logo img {
+        height: 34px;
     }
 
     .nav-toggle {
